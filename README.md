@@ -10,6 +10,13 @@
 
 A sophisticated n8n workflow that creates an intelligent WhatsApp bot capable of processing text messages, voice notes, and images using Google Gemini AI.
 
+## 📸 Demo Screenshots
+For live demo screenshots showcasing the AI agent in action, including WhatsApp conversations, voice transcription, image analysis, and workflow overview, please check the docs/demo-screenshots/ folder in this repository.
+
+### Architecture Diagram
+![Workflow Architecture](docs/workflow-diagram.png)
+*High-level architecture showing message flow and processing*
+
 ## 🌟 Features
 
 - **Multi-Modal Processing**: Handles text, audio, and image inputs seamlessly
@@ -30,14 +37,16 @@ The workflow uses a smart routing system that:
    - **Image**: Download → Analyze → AI processing with context
 4. **Responds** through WhatsApp Business API with contextual memory
 
-## 🔧 Prerequisites
+## 📋 Prerequisites
+
+Before getting started, you'll need:
 
 - **n8n instance** (self-hosted or cloud)
 - **WhatsApp Business API** account
 - **Google Gemini API** key
 - **Meta Developer** account for WhatsApp integration
 
-## 📋 Required APIs & Services
+### Required APIs & Services
 
 | Service | Purpose | Documentation |
 |---------|---------|---------------|
@@ -45,21 +54,21 @@ The workflow uses a smart routing system that:
 | Google Gemini API | AI processing & transcription | [Google AI Studio](https://makersuite.google.com/app/apikey) |
 | n8n | Workflow automation | [n8n Documentation](https://docs.n8n.io/) |
 
-## 🚀 Quick Start
+## 🚀 Quick Start Guide
 
-### 1. Clone the Repository
+### Step 1: Clone the Repository
 ```bash
 git clone https://github.com/ZohaibCodez/n8n-whatsapp-ai-agent.git
 cd n8n-whatsapp-ai-agent
 ```
 
-### 2. Import Workflow
+### Step 2: Import Workflow
 1. Open your n8n instance
 2. Go to **Workflows** → **Import from File**
 3. Select `workflows/whatsapp-agent.json`
-4. Ensure the workflow imports as inactive. Activate only after configuring credentials.
+4. **Important**: Ensure the workflow imports as inactive. Activate only after configuring credentials.
 
-### 3. Configure Credentials
+### Step 3: Configure Credentials
 Set up the following credentials in n8n:
 
 #### WhatsApp Business API
@@ -68,15 +77,16 @@ Set up the following credentials in n8n:
 - **Webhook Verification Token**: For webhook security
 
 #### Google Gemini API
-> Security note: The shared workflow JSON contains no credentials or live webhook IDs. You must add credentials in n8n and replace placeholder values (e.g., `YOUR_PHONE_NUMBER_ID`).
 - **API Key**: Your Google AI Studio API key
 
-### 4. Configure Webhook
+> **Security Note**: The shared workflow JSON contains no credentials or live webhook IDs. You must add credentials in n8n and replace placeholder values (e.g., `YOUR_PHONE_NUMBER_ID`).
+
+### Step 4: Configure Webhook
 1. Set up your n8n webhook URL in Meta Developer Console
 2. Configure webhook events: `messages`
 3. Update webhook verification token
 
-### 5. Test the Agent
+### Step 5: Test the Agent
 Send a message to your WhatsApp Business number to test the integration!
 
 ## 💬 Usage Examples
@@ -95,7 +105,7 @@ Zorox: "I'd be happy to help! However, I don't have access to real-time weather 
 - Send an image → Automatically analyzed and described
 - Include caption for specific questions about the image
 
-## 🎛️ Configuration
+## ⚙️ Configuration
 
 ### System Prompt
 The AI agent uses a customizable system prompt that includes:
@@ -108,26 +118,9 @@ The AI agent uses a customizable system prompt that includes:
 - **Context Window**: 20 messages retained
 - **Memory Type**: Buffer window for conversation continuity
 
-## 🔒 Security Considerations
+## 🛠️ Technical Details
 
-- **Webhook Security**: Always use verification tokens
-- **API Keys**: Store securely in n8n credentials
-- **Rate Limiting**: Monitor usage to avoid API limits
-- **Data Privacy**: Consider GDPR/privacy regulations for message storage
- - **Safe Exports**: If you re-share, remove any IDs and keep `active: false`. See `SECURITY.md`.
-
-## 🛠️ Customization
-
-### Modify AI Behavior
-Edit the system prompt in the "AI Agent" node to change personality or capabilities.
-
-### Add New Media Types
-Extend the Switch node to handle additional WhatsApp media types like documents or videos.
-
-### Enhance Image Processing
-Modify the "Analyze Image" node prompt for specific use cases (OCR, object detection, etc.).
-
-## 📊 Workflow Nodes Breakdown
+### Workflow Nodes Breakdown
 
 | Node | Function | Notes |
 |------|----------|-------|
@@ -138,6 +131,25 @@ Modify the "Analyze Image" node prompt for specific use cases (OCR, object detec
 | Download Media | Fetches audio/images | WhatsApp Media API |
 | Transcribe Audio | Speech-to-text | Gemini 1.5 Flash |
 | Analyze Image | Image description | Gemini Vision |
+
+## 🎛️ Customization
+
+### Modify AI Behavior
+Edit the system prompt in the "AI Agent" node to change personality or capabilities.
+
+### Add New Media Types
+Extend the Switch node to handle additional WhatsApp media types like documents or videos.
+
+### Enhance Image Processing
+Modify the "Analyze Image" node prompt for specific use cases (OCR, object detection, etc.).
+
+## 🔒 Security Considerations
+
+- **Webhook Security**: Always use verification tokens
+- **API Keys**: Store securely in n8n credentials
+- **Rate Limiting**: Monitor usage to avoid API limits
+- **Data Privacy**: Consider GDPR/privacy regulations for message storage
+- **Safe Exports**: If you re-share, remove any IDs and keep `active: false`. See `SECURITY.md`.
 
 ## 🐛 Troubleshooting
 
@@ -160,11 +172,19 @@ Modify the "Analyze Image" node prompt for specific use cases (OCR, object detec
 
 ## 🤝 Contributing
 
+We welcome contributions! Here's how to get started:
+
 1. Fork the repository
 2. Create a feature branch: `git checkout -b feature/amazing-feature`
 3. Commit your changes: `git commit -m 'Add amazing feature'`
 4. Push to the branch: `git push origin feature/amazing-feature`
 5. Open a Pull Request
+
+## 📬 Support & Community
+
+- **Issues**: [GitHub Issues](https://github.com/ZohaibCodez/n8n-whatsapp-ai-agent/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/ZohaibCodez/n8n-whatsapp-ai-agent/discussions)
+- **n8n Community**: [n8n Community Forum](https://community.n8n.io/)
 
 ## 📝 License
 
@@ -176,12 +196,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **Google** for the Gemini AI API
 - **Meta** for WhatsApp Business API
 - **Open Source Community** for inspiration and support
-
-## 📬 Support
-
-- **Issues**: [GitHub Issues](https://github.com/ZohaibCodez/n8n-whatsapp-ai-agent/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/ZohaibCodez/n8n-whatsapp-ai-agent/discussions)
-- **n8n Community**: [n8n Community Forum](https://community.n8n.io/)
 
 ---
 
